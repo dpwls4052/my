@@ -86,7 +86,9 @@ function typing(){
     }
 }
 
-setInterval(typing,200)
+let type = setInterval(typing,200);
+clearInterval(type);
+
 
 
 const modal = document.getElementById("modal")
@@ -99,10 +101,12 @@ function isModalOn() {
 function modalOff() {
     modal.style.display = "none"
 }
+
 const btnModal = document.getElementById("btn-modal")
 btnModal.addEventListener("click", e => {
     modalOn()
 })
+
 const closeBtn = modal.querySelector(".close-area")
 closeBtn.addEventListener("click", e => {
     modalOff()
@@ -113,8 +117,11 @@ modal.addEventListener("click", e => {
         modalOff()
     }
 })
+
 window.addEventListener("keyup", e => {
     if(isModalOn() && e.key === "Escape") {
         modalOff()
     }
 })
+
+
