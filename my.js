@@ -7,6 +7,7 @@ const slideWidth = 100;
 const slideSpeed = 1000;
 const startNum = 0;
 
+
 slideWrapper.style.width = slideWidth * (slideLen + 2) +  "vw";
 
 let check = true;
@@ -89,38 +90,52 @@ function typing(){
 let type = setInterval(typing,200);
 clearInterval(type);
 
+const modal = document.getElementById("modalcontents");
+const modalButtons = document.getElementsByClassName("process-more-button");
+const closeBtn = modal.getElementsByClassName("close-area");
 
-
-const modal = document.getElementById("modal")
-function modalOn() {
-    modal.style.display = "flex"
+for ( let i = 0 ; i < modal.childElementCount ; i ++) {
+    modalButtons[i].addEventListener('click', ()=> {
+        modalOn(i);
+    })
+    closeBtn[i].addEventListener('click', ()=>{
+        modalOff(i);
+    })
 }
-function isModalOn() {
-    return modal.style.display === "flex"
+
+
+
+
+function modalOn(count) {
+    modal.children[count].style.display = "flex"
 }
-function modalOff() {
-    modal.style.display = "none"
+function isModalOn(count) {
+    return modal.children[count].style.display === "flex"
+}
+function modalOff(count) {
+    modal.children[count].style.display = "none"
 }
 
-const btnModal = document.getElementById("btn-modal")
-btnModal.addEventListener("click", e => {
-    modalOn()
-})
+// const btnModal = document.getElementById("btn-modal")
+// btnModal.addEventListener("click", e => {
+//     modalOn()
+// })
 
-const closeBtn = modal.querySelector(".close-area")
-closeBtn.addEventListener("click", e => {
-    modalOff()
-})
-modal.addEventListener("click", e => {
+window.addEventListener("click", e => {
     const evTarget = e.target
-    if(evTarget.classList.contains("modal-overlay")) {
-        modalOff()
+    console.log(evTarget);
+    for( let i = 0 ; i < modal.childElementCount ; i ++){
+        if(evTarget.classList.contains("modal-overlay")) {
+            modalOff(i);
+        }
     }
 })
 
 window.addEventListener("keyup", e => {
-    if(isModalOn() && e.key === "Escape") {
-        modalOff()
+    for( let i = 0 ; i < modal.childElementCount ; i ++){
+        if(isModalOn(i) && e.key === "Escape") {
+            modalOff(i);
+        }
     }
 })
 
