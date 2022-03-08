@@ -75,20 +75,21 @@ function prevSlide(){
       }, 500);
     }
 }
+
+
 const content = "WELCOME TO MY PORTFOLIO"
 const text = document.querySelector(".typing")
 let index = 0;
+let type = setInterval(typing,200);
 
 function typing(){
     text.textContent +=content[index++];
-    if(index > content.length){
-        text.textContent = ""
-        index = 0;
-    }
+    if(index === content.length){
+        clearInterval(type);
+    }                               
 }
 
-let type = setInterval(typing,200);
-clearInterval(type);
+
 
 const modal = document.getElementById("modalcontents");
 const modalButtons = document.getElementsByClassName("process-more-button");
@@ -103,23 +104,17 @@ for ( let i = 0 ; i < modal.childElementCount ; i ++) {
     })
 }
 
-
-
-
 function modalOn(count) {
     modal.children[count].style.display = "flex"
+    document.body.style.overflow = "hidden";
 }
 function isModalOn(count) {
     return modal.children[count].style.display === "flex"
 }
 function modalOff(count) {
     modal.children[count].style.display = "none"
+    document.body.style.overflow = "auto";
 }
-
-// const btnModal = document.getElementById("btn-modal")
-// btnModal.addEventListener("click", e => {
-//     modalOn()
-// })
 
 window.addEventListener("click", e => {
     const evTarget = e.target
@@ -130,6 +125,7 @@ window.addEventListener("click", e => {
         }
     }
 })
+
 
 window.addEventListener("keyup", e => {
     for( let i = 0 ; i < modal.childElementCount ; i ++){

@@ -5,7 +5,7 @@ html{
     scroll-behavior: smooth;
 }
 body{
-    overflow-x:hidden;
+    overflow:hidden;
     font-family: 'Roboto';
     position: relative;
 }
@@ -44,7 +44,7 @@ body{
 }
 .scroll{
     display: flex;
-    padding-top: 38vh;
+    padding-top: 42vh;
     justify-content: center;
 }
 .scroll a{
@@ -87,7 +87,7 @@ body{
 .typing::after {
     content: '|';
     display: inline;
-    animation: blink 0.4s infinite;
+    animation: blink 0.2s infinite;
 }
 @keyframes blink{
     0% { opacity:1; }
@@ -233,6 +233,7 @@ body{
     position: relative;
     display: flex;
     justify-content: space-between;
+    margin-top: 50px;
 }
 .aboutmeContainer h2{
     font-size: 64px;
@@ -431,8 +432,6 @@ body{
     z-index:200;
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -442,36 +441,40 @@ body{
     display: none;
     background-attachment: fixed; 
     background: rgba( 0, 0, 0, 0.5);
+    /* background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(1.5px);
+    -webkit-backdrop-filter: blur(1.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18); */
 }
 .modal-window {
     background: #fff;
     box-shadow: 0 8px 32px 0 rgba( 0, 0, 0, 0.35 );
     border-radius: 10px;
     width: 800px;
-    height: 100%;
+    height: 930px;
     overflow-y: auto;
     position: relative;
-    top: 5px;
-    padding:20px 10px;
+    top: 10px;
+    padding: 0px 10px 20px 10px;
 }
 .modal-header{
     position: fixed;
     width: 784px;
-    top: 5px;
     background-color: #fff;
     display: flex;
-    height: 40px;
-    padding-bottom: 20px;
+    height: 60px;
+    justify-content: space-between;
+    padding: 8px;
+    align-items: center;
+    box-sizing: border-box;
 }
 .modal-header .title {
     color: #000;
     font-size: 20px;
-    padding-top: 20px;
 }
 .modal-header .close-area {
-    padding-left: 570px;
-    padding-top: 20px;
-    padding-bottom: 20px;
     cursor: pointer;
     color: #000;
     font-size: 20px;
