@@ -135,4 +135,56 @@ window.addEventListener("keyup", e => {
     }
 })
 
+const body = document.querySelector('body');
+const section = body.querySelector('.scrollcontent');
 
+function handleWheel(event){
+    console.log(event);
+}
+
+function init(){
+    window.onmousewheel = function(e){
+        console.dir(e);
+        if(e.wheelDelta === -150){
+            console.log('wheel down');
+        }else{
+            console.log('wheel up');
+        }
+    }
+}
+
+init();
+
+// const spec_content_parent = document.querySelector('.scrollcontent').parentNode;
+// const spec_content = document.querySelector('.scrollcontent');
+// const CLASSNAME_NUM = 1;
+
+// function onMouseWheel(name){
+//     let previousDiv = name.previousElementSbling;
+//     let nextDiv = name.nextElementSibling;
+//     window.onmousewheel = function(e){
+//         if(e.wheelDelta <= 0) {
+//             console.log(nextDiv,'wheel down');
+//             spec_content.animate({scrollTop : nextDiv.offsetTop},400);
+//         }else if(e.wheelDelta >= 0){
+//             console.log(previousDiv,'wheel up');
+//         }
+//     }
+// }
+
+// const mouseOver = function onMouseOver(e){
+//     const targetParent = e.target.parentNode;
+//     if(targetParent.className.includes(targetParent.classList[CLASSNAME_NUM])){
+//         onMouseWheel(targetParent);
+//     }
+// }
+
+// function getElementsByClassName(){
+//     window.onmouseover = mouseOver;
+// }
+
+// function init(){
+//     getCurrentDivClassName();
+// }
+
+// init();
