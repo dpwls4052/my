@@ -75,7 +75,7 @@ function prevSlide(){
       }, 500);
     }
 }
-
+//slide
 
 const content = "WELCOME TO MY PORTFOLIO"
 const text = document.querySelector(".typing")
@@ -88,7 +88,7 @@ function typing(){
         clearInterval(type);
     }                               
 }
-
+//typing
 
 
 const modal = document.getElementById("modalcontents");
@@ -126,7 +126,6 @@ window.addEventListener("click", e => {
     }
 })
 
-
 window.addEventListener("keyup", e => {
     for( let i = 0 ; i < modal.childElementCount ; i ++){
         if(isModalOn(i) && e.key === "Escape") {
@@ -134,57 +133,63 @@ window.addEventListener("keyup", e => {
         }
     }
 })
+//modal
 
-const body = document.querySelector('body');
-const section = body.querySelector('.scrollcontent');
 
-function handleWheel(event){
-    console.log(event);
-}
-
-function init(){
-    window.onmousewheel = function(e){
-        console.dir(e);
-        if(e.wheelDelta === -150){
-            console.log('wheel down');
-        }else{
-            console.log('wheel up');
+window.onload = function(){
+    const elm = document.querySelectorAll('.section');
+    const elmCount = elm.length;
+    elm.forEach(function(item, index){
+      item.addEventListener('mousewheel', function(event){
+        
+        let checkModal=false;
+        for ( let i = 0 ; i < modal.childElementCount ; i ++) {
+            console.log(i, checkModal)
+            if(isModalOn(i)){
+                checkModal = true;
+            }
         }
-    }
-}
+        
+        if(!checkModal){
+        
+            console.log("else");
+            event.preventDefault();
+            let delta = 0;
+    
+            if (!event) event = window.event;
+            if (event.wheelDelta) {
+                delta = event.wheelDelta / 120;
+                if (window.opera) delta = -delta;
+            } 
+            else if (event.detail)
+                delta = -event.detail / 3;
+    
+            let moveTop = window.scrollY;
+            let elmSelector = elm[index];
+    
+            // wheel down : move to next section
+            if (delta < 0){
+              if (elmSelector !== elmCount-1){
+                try{
+                  moveTop = window.pageYOffset + elmSelector.nextElementSibling.getBoundingClientRect().top;
+                }catch(e){}
+              }
+            }
+            // wheel up : move to previous section
+            else{
+              if (elmSelector !== 0){
+                try{
+                  moveTop = window.pageYOffset + elmSelector.previousElementSibling.getBoundingClientRect().top;
+                }catch(e){}
+              }
+            }
+            const body = document.querySelector('html');
+            window.scrollTo({top:moveTop, left:0, behavior:'smooth'});
+        }
 
-init();
+        console.log("complate");
+      });
+        
 
-// const spec_content_parent = document.querySelector('.scrollcontent').parentNode;
-// const spec_content = document.querySelector('.scrollcontent');
-// const CLASSNAME_NUM = 1;
-
-// function onMouseWheel(name){
-//     let previousDiv = name.previousElementSbling;
-//     let nextDiv = name.nextElementSibling;
-//     window.onmousewheel = function(e){
-//         if(e.wheelDelta <= 0) {
-//             console.log(nextDiv,'wheel down');
-//             spec_content.animate({scrollTop : nextDiv.offsetTop},400);
-//         }else if(e.wheelDelta >= 0){
-//             console.log(previousDiv,'wheel up');
-//         }
-//     }
-// }
-
-// const mouseOver = function onMouseOver(e){
-//     const targetParent = e.target.parentNode;
-//     if(targetParent.className.includes(targetParent.classList[CLASSNAME_NUM])){
-//         onMouseWheel(targetParent);
-//     }
-// }
-
-// function getElementsByClassName(){
-//     window.onmouseover = mouseOver;
-// }
-
-// function init(){
-//     getCurrentDivClassName();
-// }
-
-// init();
+    });
+  }
