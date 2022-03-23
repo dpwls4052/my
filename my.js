@@ -186,8 +186,9 @@ window.onload = function(){
             const body = document.querySelector('html');
             window.scrollTo({top:moveTop, left:0, behavior:'smooth'});
         }
-
+        
         console.log("complate");
+        
       });
         
 
